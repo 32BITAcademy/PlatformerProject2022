@@ -14,13 +14,18 @@ Player::~Player()
 
 void Player::Update(float dt)
 {
-	static float speed = 100;
-	position.y += speed * dt;
+	static float speedx = 150,speedy=200;
+	position.y += speedy * dt;
+	position.x += speedx * dt;
 
 	if (position.y > 200)
-		speed = -fabs(speed);
+		speedy = -fabs(speedy);
 	if (position.y < 0)
-		speed = fabs(speed);
+		speedy = fabs(speedy);
+	if (position.x > 200)
+		speedx = -fabs(speedx);
+	if (position.x < 0)
+		speedx = fabs(speedx);
 }
 
 void Player::SendMsg(MSG* m)
