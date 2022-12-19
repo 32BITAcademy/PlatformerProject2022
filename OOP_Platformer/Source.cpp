@@ -29,7 +29,7 @@ int main()
 				window.close();
 		}
 
-		float dt = clock.restart().asSeconds()*15;
+		float dt = clock.restart().asSeconds()*2;
 		GM.Update(dt);
 
 		window.clear();
