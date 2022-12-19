@@ -15,11 +15,11 @@ Player::~Player()
 void Player::Update(float dt)
 {
 	static float speed = 100;
-	position.x += speed * dt;
+	position.y += speed * dt;
 
-	if (position.x > 200)
+	if (position.y > 200)
 		speed = -fabs(speed);
-	if (position.x < 0)
+	if (position.y < 0)
 		speed = fabs(speed);
 }
 
