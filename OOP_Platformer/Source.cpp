@@ -7,7 +7,7 @@ using namespace sf;
 
 int main()
 {
-	RenderWindow window(sf::VideoMode(200, 200), "Lesson 1. kychka-pc.ru");
+	RenderWindow window(sf::VideoMode(800, 800), "Lesson 1. kychka-pc.ru");
 	
 	Texture tex;
 	tex.loadFromFile("images\\char_black.png");
@@ -18,7 +18,7 @@ int main()
 	clock.restart();
 
 	GameManager GM;
-	GM.AddObject(new Player({ 100.f, 100.f }, { 128.f, 128.f }, s));
+	GM.AddObject(new Player({ 400.f, 400.f }, { 128.f, 128.f }, s));
 
 	while (window.isOpen())
 	{
@@ -29,7 +29,7 @@ int main()
 				window.close();
 		}
 
-		float dt = clock.restart().asSeconds()*3;
+		float dt = clock.restart().asSeconds()*15;
 		GM.Update(dt);
 
 		window.clear();
