@@ -1,12 +1,17 @@
 #include<SFML/Graphics.hpp>
+#include<box2d/box2d.h>
 #include"GameObject.h"
 #include"Player.h"
 #include"GameManager.h"
+
 
 using namespace sf;
 
 int main()
 {
+	b2Vec2 Gravity = { 0, 9.8 };
+	b2World world(Gravity);
+
 	RenderWindow window(sf::VideoMode(200, 200), "Lesson 1. kychka-pc.ru");
 	
 	Texture tex;
