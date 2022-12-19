@@ -18,11 +18,11 @@ void Player::Update(float dt)
 	position.y += speedy * dt;
 	position.x += speedx * dt;
 
-	if (position.y > 200)
+	if (position.y > 800)
 		speedy = -fabs(speedy);
 	if (position.y < 0)
 		speedy = fabs(speedy);
-	if (position.x > 200)
+	if (position.x > 800)
 		speedx = -fabs(speedx);
 	if (position.x < 0)
 		speedx = fabs(speedx);
