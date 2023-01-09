@@ -19,13 +19,16 @@ int main()
 	Sprite s(tex);
 	s.setTextureRect({ 0, 0, 128, 128 });
 	tex1.loadFromFile("images\\platform.png");
-	Sprite x(tex1);
-	x.setTextureRect({ 0,404, 800,150 });
+	Sprite sprite_plat1(tex1);
+	Sprite sprite_plat2(tex1);
+	sprite_plat1.setTextureRect({ 0,404, 800,150 });
+	sprite_plat2.setTextureRect({ 0,404, 400,75 });
 	Clock clock;
 	clock.restart();
 
 	GameManager* GM = GameManager::getInstance();
-	GM->AddObject(new Platform({ 400.f, 725.f }, { 800.f,150.f }, x));
+	GM->AddObject(new Platform({ 400.f, 725.f }, { 800.f,150.f }, sprite_plat1));
+	GM->AddObject(new Platform({ 400.f, 425.f }, { 400.f,75.f }, sprite_plat2));
 	GM->AddObject(new Player({ 400.f, 0.f }, { 128.f, 128.f }, s));
 	while (window.isOpen())
 	{
