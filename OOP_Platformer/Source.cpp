@@ -10,8 +10,7 @@ using namespace sf;
 
 int main()
 {
-	b2Vec2 Gravity = { 0, 9.8 };
-	b2World world(Gravity);
+	
 
 	RenderWindow window(sf::VideoMode(800, 800), "Platformer Project");
 	
@@ -25,9 +24,9 @@ int main()
 	Clock clock;
 	clock.restart();
 
-	GameManager GM;
-	GM.AddObject(new Platform({ 400.f, 725.f }, { 800.f,150.f }, x));
-	GM.AddObject(new Player({ 400.f, 400.f }, { 128.f, 128.f }, s));
+	GameManager* GM = GameManager::getInstance();
+	GM->AddObject(new Platform({ 400.f, 725.f }, { 800.f,150.f }, x));
+	GM->AddObject(new Player({ 400.f, 0.f }, { 128.f, 128.f }, s));
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -37,11 +36,12 @@ int main()
 				window.close();
 		}
 
-		float dt = clock.restart().asSeconds()*2;
-		GM.Update(dt);
+		float dt = clock.restart().asSeconds();
+		GM->World()->Step(dt, 5, 3);
+		GM->Update(dt);
 
 		window.clear();
-		GM.Draw(window);
+		GM->Draw(window);
 		window.display();
 	}
 

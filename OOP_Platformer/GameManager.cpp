@@ -1,9 +1,20 @@
 #include "GameManager.h"
 #include "GameObject.h"
 
+GameManager* GameManager::instance = nullptr;
+
 GameManager::GameManager() :
 	objs(), msgs()
 {
+	b2Vec2 Gravity = { 0, 9.8f };
+	world = new b2World(Gravity);
+}
+
+GameManager* GameManager::getInstance()
+{
+	if (instance == nullptr)
+		instance = new GameManager();
+	return instance;
 }
 
 GameManager::~GameManager()
@@ -41,4 +52,9 @@ void GameManager::Draw(sf::RenderWindow& win)
 {
 	for (auto o : objs)
 		o->Draw(win);
+}
+
+b2World* GameManager::World()
+{
+	return world;
 }

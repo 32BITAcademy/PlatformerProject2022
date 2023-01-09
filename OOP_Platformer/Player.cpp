@@ -1,11 +1,11 @@
 #include "Player.h"
+#include "GameManager.h"
 
 using namespace sf;
 
 Player::Player(sf::Vector2f position, sf::Vector2f size, sf::Sprite sprite) :
-	GameObject(position, size, sprite)
+	GameObject(position, size, sprite, b2_dynamicBody)
 {
-
 }
 
 Player::~Player()
@@ -14,32 +14,23 @@ Player::~Player()
 
 void Player::Update(float dt)
 {
-	static float speed = 150;
-	
+	static float speed = 3.50f;
+	bool is_moving = false;
+	b2Vec2 velocity = body->GetLinearVelocity();
 	if (Keyboard::isKeyPressed(Keyboard::A))
 	{
-		position.x -= speed * dt;
+		is_moving = true;
+		body->SetLinearVelocity({ -speed, velocity.y });
 	}
 	if (Keyboard::isKeyPressed(Keyboard::D))
 	{
-		position.x += speed * dt;
+		is_moving = true;
+		body->SetLinearVelocity({ speed, velocity.y });
 	}
-	if (Keyboard::isKeyPressed(Keyboard::W))
+	if (!is_moving)
 	{
-		position.y -= speed * dt;
+		body->SetLinearVelocity({ 0, velocity.y });
 	}
-	if (Keyboard::isKeyPressed(Keyboard::S))
-	{
-		position.y += speed * dt;
-	}
-	if (position.x < hitbox.width / 2)
-		position.x = hitbox.width / 2;
-	if (position.x > 800 - hitbox.width / 2)
-		position.x = 800 - hitbox.width / 2;
-	if (position.y < hitbox.height / 2)
-		position.y = hitbox.height / 2;
-	if (position.y > 800 - hitbox.height / 2)
-		position.y = 800 - hitbox.height / 2;
 }
 
 void Player::SendMsg(MSG* m)

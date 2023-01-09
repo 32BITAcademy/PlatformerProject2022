@@ -1,13 +1,20 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include <SFML\Graphics.hpp>
+#include<box2d/box2d.h>
 class MSG;
+
+#define BOX_SCALE 0.01f
 
 class GameObject
 {
 private:
 	int id;
+	b2PolygonShape shape;
+	b2BodyDef body_def;
 
 protected:
+	b2Body* body;
 	sf::Vector2f position;
 	sf::Vector2f speed;
 	sf::Rect<float> hitbox;
@@ -16,7 +23,8 @@ protected:
 public:
 	static int GenerateNewID();
 
-	GameObject(sf::Vector2f position, sf::Vector2f size, sf::Sprite sprite);
+	GameObject(sf::Vector2f position, sf::Vector2f size, sf::Sprite sprite,
+		b2BodyType body_type);
 	virtual ~GameObject();
 
 	int GetID();
