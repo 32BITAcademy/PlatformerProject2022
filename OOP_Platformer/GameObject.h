@@ -10,10 +10,10 @@ class GameObject
 {
 private:
 	int id;
-	b2PolygonShape shape;
-	b2BodyDef body_def;
 
 protected:
+	b2PolygonShape shape;
+	b2BodyDef body_def;
 	b2Body* body;
 	sf::Vector2f position;
 	sf::Vector2f speed;

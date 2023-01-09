@@ -6,6 +6,12 @@ using namespace sf;
 Player::Player(sf::Vector2f position, sf::Vector2f size, sf::Sprite sprite) :
 	GameObject(position, size, sprite, b2_dynamicBody)
 {
+	body->DestroyFixture(body->GetFixtureList());
+	b2FixtureDef fix_def;
+	fix_def.shape = &shape;
+	fix_def.density = 1;
+	fix_def.friction = 0;
+	body->CreateFixture(&fix_def);
 }
 
 Player::~Player()
