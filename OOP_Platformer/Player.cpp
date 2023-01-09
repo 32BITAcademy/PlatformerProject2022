@@ -20,17 +20,22 @@ void Player::Update(float dt)
 	if (Keyboard::isKeyPressed(Keyboard::A))
 	{
 		is_moving = true;
-		body->SetLinearVelocity({ -speed, velocity.y });
+		velocity.x = -speed;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::D))
 	{
 		is_moving = true;
-		body->SetLinearVelocity({ speed, velocity.y });
+		velocity.x = speed;
 	}
 	if (!is_moving)
 	{
-		body->SetLinearVelocity({ 0, velocity.y });
+		velocity.x = 0;
 	}
+	if (Keyboard::isKeyPressed(Keyboard::Space))
+	{
+		velocity.y = -1.5 * speed;
+	}
+	body->SetLinearVelocity(velocity);
 }
 
 void Player::SendMsg(MSG* m)
